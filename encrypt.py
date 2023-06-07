@@ -2,36 +2,35 @@ import os
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 from cryptography.hazmat.primitives.ciphers.aead import ChaCha20Poly1305
 from cryptography.hazmat.backends import default_backend
-import secrets
 
 def encrypt_file_chacha20(key, input_file, output_file):
+    # Generiere einen zufälligen Nonce
+    nonce = os.urandom(16)
+
+    # Erstellen einer ChaCha20Poly1305-Verschlüsselungsinstanz mit dem Schlüssel und Nonce
+    cipher = Cipher(algorithms.ChaCha20(key, nonce), mode=None, backend=default_backend()).encryptor()
+
     # Lesen des Inhalts der Eingabedatei
     with open(input_file, 'rb') as file:
         plaintext = file.read()
 
-    # Generieren eines zufälligen Nonces
-    nonce = os.urandom(12)
-
-    # Erstellen einer ChaCha20Poly1305-Verschlüsselungsinstanz mit dem Schlüssel und Nonce
-    cipher = ChaCha20Poly1305(key)
-
     # Verschlüsseln der Daten
-    ciphertext = cipher.encrypt(nonce, plaintext, None)
+    ciphertext = cipher.update(plaintext) + cipher.finalize()
 
-    # Schreiben des verschlüsselten Texts, Nonces und Authentifizierungstag in die Ausgabedatei
+    # Schreiben von Nonce und verschlüsselten Daten in die Ausgabedatei
     with open(output_file, 'wb') as file:
-        file.write(ciphertext )
+        file.write(nonce + ciphertext)
 
 
-def generate_random_key():
-    key = secrets.token_bytes(32)
-    print(key)
-    return key
+key = os.urandom(32)  # Erzeuge einen zufälligen 256-Bit-Schlüssel
 
-key = generate_random_key()
+with open("chkey.txt", "wb") as keyfile:
+    keyfile.write(key)
 
-input_file = 'klartext.txt'
-output_file = 'verschluesselte_datei.bin'
+for file in os.walk('encryptme/'):
+    files = file[2]
 
-encrypt_file_chacha20(key, input_file, output_file)
-
+for i in files:
+    input_file = "encryptme/"+i
+    output_file = "encryptme/"+i
+    encrypt_file_chacha20(key, input_file, output_file)
