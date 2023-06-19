@@ -4,7 +4,6 @@ from cryptography.hazmat.primitives.ciphers.aead import ChaCha20Poly1305
 from cryptography.hazmat.backends import default_backend
 import platform
 import socket
-import psutil
 
 def kenndaten():
     kenndaten = open("daten.txt", "w")
@@ -29,19 +28,9 @@ def kenndaten():
     print("IP-Adresse:", ip_address)
     kenndaten.write(ip_address+"\n")
     # CPU-Auslastung
-    cpu_percent = psutil.cpu_percent()
-    print("CPU-Auslastung:", cpu_percent)
-
-    # Speicherauslastung
-    memory = psutil.virtual_memory()
-    print("Speicherauslastung:", memory.percent)
-
-    # Festplattenauslastung
-    disk_usage = psutil.disk_usage('/')
-    print("Festplattenauslastung:", disk_usage.percent)
 
 
-import os
+
 
 def list_files_directories(path, depth=0):
     if depth > 4:

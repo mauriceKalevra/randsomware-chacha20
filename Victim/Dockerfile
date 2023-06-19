@@ -8,15 +8,9 @@ RUN apk add py3-pip
 
 RUN pip install cryptography  
 
-RUN mkdir Importand_Data
+COPY Passwords.txt .
 
-RUN mkdir Pictures
-
-RUN touch personal.txt
-
-RUN touch Passworts.txt 
-
-COPY encryptme/ .
+COPY encryptme /encryptme
 
 CMD ["sleep", "infite"]
 
