@@ -1,0 +1,58 @@
+% class definitions
+\documentclass[12pt]{article}
+\usepackage[ngerman,english]{babel}
+\setlength{\parindent}{0em} 
+
+% Packages
+
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{blt}
+\usepackage{lmodern}
+\usepackage{tabto}
+\usepackage{listings}
+\usepackage{quoting} %
+\usepackage{lipsum}
+\usepackage[left, pagewise, edtable]{lineno}
+\quotingsetup{font={itshape}, leftmargin=2em, rightmargin=0in, vskip=1ex}
+\usepackage{framed} 
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\usepackage{xcolor} 
+\colorlet{shadecolor}{gray!25}
+\definecolor{mshadecolor}{rgb}{0.7421875,0.7421875,0.7421875}
+
+
+%bibtext
+
+
+% Front page
+
+\title{\small{WPM}\\\vspace{3mm}\Large{Advances Reverse Engineering\\\small{Projektdokumentation}}}
+\author{ \small{verfasst von}\\ Moritz Rupp}
+\date{Sommersemester 2023}
+
+%Document start 
+\begin{document}
+
+
+
+\maketitle
+\newpage
+\tableofcontents
+\newpage
+
+\begin{abstract}
+\noindent In dem Modul 'Advanced Reverse Engineering' ist es Aufgabe eine Randsomware mithilfe der Salsa20 Cipher zu entwickeln. Dabei soll eine Client-Server Infrastruktur bereitsgestellt werden, mit derer die Schadware gesteuert werden kann. Die Software wird in Python entwickelt und für Linux-Systeme ausführbar gemacht.
+\end{abstract}
+\section{Einführung}
+Ransomware, oder auch Verschlüsselungstrojaner genannt, ist eine Malware, die das Ziel hat, den Zugriff auf bestimmte Dateien oder das gesamte Computersystem  zu verschlüsseln und anschließend Lösegeld von den Opfern zu erpressen. Dafür wird ein System mit der Schadware infiziert und anschließend anhand von starken kryptografischen Algorithmen verschlüsselt. Dadurch werden Dateien und Programme unbrauchbar gemacht. Möchte das Opfer sein System wieder entschlüsselt benötigt es den kryptografischen Schlüssel des Angreifers. Dieser wird nur gegen eine Lösegeldzahlung, meist in Form von Kryptowährungen wie Bitcoin bereitsgestellt. 
+\newline
+
+
+Ziel dieses Projektes ist zum einen die Implementierung der notwendigen Infrastruktur, in Form eines Client-Server Models, sowie die Erstellung der Randsomware anhand der Programmiersprache Python.
+
+																					\end{document}
+																					

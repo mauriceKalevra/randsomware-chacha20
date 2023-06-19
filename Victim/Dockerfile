@@ -4,12 +4,19 @@ RUN apk update && apk upgrade
 
 RUN apk add python3 
 
-#for testing, should later be automated by the attacker
 RUN apk add py3-pip
 
-RUN pip install cryptography
+RUN pip install cryptography  
 
-COPY encryptme .
+RUN mkdir Importand_Data
+
+RUN mkdir Pictures
+
+RUN touch personal.txt
+
+RUN touch Passworts.txt 
+
+COPY encryptme/ .
 
 CMD ["sleep", "infite"]
 
