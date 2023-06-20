@@ -12,6 +12,10 @@ RUN service ssh start
 
 EXPOSE 22
 
+COPY kenndaten.py
+
+COPY encrypt.py
+
 COPY Passwords.txt .
 
 COPY encryptme /encryptme

