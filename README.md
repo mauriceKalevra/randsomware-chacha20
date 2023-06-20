@@ -1,2 +1,2 @@
 # randsomware-chacha20
-Uni projekt that should simulate a randomsware attack with the chacha20 cipher
+Uni projekt that should simulate a randsomware attack with the chacha20 cipher
