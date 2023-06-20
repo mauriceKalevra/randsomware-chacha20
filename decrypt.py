@@ -1,3 +1,13 @@
+
+import os
+from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
+from cryptography.hazmat.primitives.ciphers.aead import ChaCha20Poly1305
+from cryptography.hazmat.backends import default_backend
+import platform
+import socket
+
+
+
 def decrypt_file_chacha20(key, input_file, output_file):
     # Lesen des Inhalts der Eingabedatei
     with open(input_file, 'rb') as file:
@@ -22,11 +32,8 @@ with open("chkey.txt", "rb") as keyfile:
 
 
 
-for file in os.walk('encryptme/'):
-    files = file[2]
-
-for i in files:
-    input_file = "encryptme/"+i
-    output_file = "encryptme/"+i
-    decrypt_file_chacha20(key, input_file, output_file)
+with open("testd.txt","r") as file:
+    for line in file:
+        line = line.rstrip("\n")
+    decrypt_file_chacha20(key, line, line)
 

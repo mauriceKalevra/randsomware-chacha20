@@ -1,18 +1,19 @@
-from alpine:latest
+FROM ubuntu:latest
 
-RUN apk update && apk upgrade
+RUN apt update && apt upgrade && apt install  openssh-server sudo -y
 
-RUN apk add python3 
+RUN apt install sshpass
 
-RUN apk add py3-pip
+RUN echo "PermitRootLogin yes">etc/ssh/sshd_config
 
-RUN pip install cryptography  
+RUN  echo 'root:root' | chpasswd
+
+RUN service ssh start
+
+EXPOSE 22
 
 COPY Passwords.txt .
 
 COPY encryptme /encryptme
 
-CMD ["sleep", "infite"]
-
-
-
+CMD ["/usr/sbin/sshd", "-D"]
