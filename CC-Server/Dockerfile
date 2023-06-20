@@ -6,6 +6,8 @@ RUN apt install sshpass
 
 RUN apt install python3-pip
 
+COPY makekey.py decrypt.py senddecryption.py .
+
 RUN pip install cryptography paramiko
 
 RUN echo "PermitRootLogin yes">etc/ssh/sshd_config
