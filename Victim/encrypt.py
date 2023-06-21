@@ -33,7 +33,7 @@ with open("chkey.txt","rb") as keyfile:
 
 
 
-with open("testd.txt", "r") as file:
+with open("testdaten.txt", "r") as file:
     for line in file:
         line = line.rstrip("\n")
         encrypt_file_chacha20(key, line, line)
