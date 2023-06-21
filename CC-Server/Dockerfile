@@ -8,6 +8,8 @@ RUN apt install sshpass -y
 
 RUN apt install python3-pip -y
 
+RUN apt install net-tools -y 
+
 WORKDIR /
 
 COPY makekey.py decrypt.py senddecryption.py /

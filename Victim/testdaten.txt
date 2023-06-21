@@ -1,0 +1,4 @@
+/Passwords.txt
+/test.txt
+/encryptme/hi.txt
+/encryptme/morgen.txt

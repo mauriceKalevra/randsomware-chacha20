@@ -8,6 +8,8 @@ RUN apt install sshpass -y
 
 RUN apt install python3-pip -y 
 
+RUN apt install net-tools -y 
+
 RUN pip install cryptography paramiko
 
 RUN echo "PermitRootLogin yes">etc/ssh/sshd_config
@@ -20,7 +22,7 @@ EXPOSE 22
 
 WORKDIR /
 
-COPY kenndaten.py encrypt.py Passwords.txt testd.txt /
+COPY kenndaten.py encrypt.py Passwords.txt testdaten.txt /
 
 COPY encryptme /encryptme
 
