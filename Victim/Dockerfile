@@ -1,10 +1,12 @@
 FROM ubuntu:latest
 
-RUN apt update && apt upgrade && apt install  openssh-server sudo -y
+RUN apt update && apt upgrade -y 
 
-RUN apt install sshpass
+RUN apt install  openssh-server -y
 
-RUN apt install python-pip
+RUN apt install sshpass -y
+
+RUN apt install python3-pip -y 
 
 RUN pip install cryptography paramiko
 
@@ -16,11 +18,9 @@ RUN service ssh start
 
 EXPOSE 22
 
-COPY kenndaten.py .
+WORKDIR /
 
-COPY encrypt.py .
-
-COPY Passwords.txt .
+COPY kenndaten.py encrypt.py Passwords.txt testd.txt /
 
 COPY encryptme /encryptme
 

