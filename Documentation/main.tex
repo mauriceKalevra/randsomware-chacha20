@@ -60,7 +60,7 @@ Dieses Dokument beleuchtet die Umsetzung und Implementierung der einzelnen Schri
 \newpage
 \section{Infrastruktur}
 \subsection{Victim-Server}
-	Auf dem Opfer-Server soll der eigentliche Randsomware Agriff stattfinden. Um diesen bereitzustellen kommen in erster Linie Virtuelle Maschienen in Frage. Diese sind jedoch sehr schwergewichtig und umstädnlich einzurichten.
+	Auf dem Opfer-Server soll der eigentliche Randsomware Angriff stattfinden. Um diesen bereitzustellen könnten Virtuelle Maschienen verwendet werden. Diese sind jedoch sehr schwergewichtig und umstädnlich einzurichten.
 	Daher wurde sich für eine Implementierung in einem Docker Container entschieden.
 	Container sind eine leichtgewichtige Art von Virtualisierung auf Betriebssystemebene[1]. Dies kann genutzt werden um eine Anwendung mitsamt ihren Abhängigkeiten als eine abgeschlossene Einheit zu verpacken und zu betreiben. Dies bietet Vorteile wie Plattformunabhängigkeit und einfache Ausfürbarkeit. In diesem Fall wird ein Ubuntu Container mit einiger vorinstallierter Software wie SSH und Python aufgesetzt.\\
 	Das Packet aus Anwendung und Abhängigkeiten
