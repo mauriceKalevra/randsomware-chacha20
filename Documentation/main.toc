@@ -1,0 +1,15 @@
+\babel@toc {english}{}
+\contentsline {section}{\numberline {1}Einführung}{3}{section.1}%
+\contentsline {section}{\numberline {2}Infrastruktur}{4}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Victim-Server}{4}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Command and Control Server}{6}{subsection.2.2}%
+\contentsline {section}{\numberline {3}Randsomware}{7}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Auslesen von Kenndaten}{7}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Schlüsselerzeugung}{8}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Dateiverschlüsselung}{10}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Entschlüsselung}{13}{subsection.3.4}%
+\contentsline {subsubsection}{\numberline {3.4.1}Bezahlung}{13}{subsubsection.3.4.1}%
+\contentsline {section}{\numberline {4}Dateientschlüsselung}{14}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Obfuskation}{15}{subsection.4.1}%
+\contentsline {section}{\numberline {5}Fazit und Ausblick}{16}{section.5}%
+\contentsline {section}{\numberline {6}Quellen}{17}{section.6}%

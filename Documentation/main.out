@@ -1,0 +1,14 @@
+\BOOKMARK [1][-]{section.1}{Einf\374hrung}{}% 1
+\BOOKMARK [1][-]{section.2}{Infrastruktur}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{Victim-Server}{section.2}% 3
+\BOOKMARK [2][-]{subsection.2.2}{Command and Control Server}{section.2}% 4
+\BOOKMARK [1][-]{section.3}{Randsomware}{}% 5
+\BOOKMARK [2][-]{subsection.3.1}{Auslesen von Kenndaten}{section.3}% 6
+\BOOKMARK [2][-]{subsection.3.2}{Schl\374sselerzeugung}{section.3}% 7
+\BOOKMARK [2][-]{subsection.3.3}{Dateiverschl\374sselung}{section.3}% 8
+\BOOKMARK [2][-]{subsection.3.4}{Entschl\374sselung}{section.3}% 9
+\BOOKMARK [3][-]{subsubsection.3.4.1}{Bezahlung}{subsection.3.4}% 10
+\BOOKMARK [1][-]{section.4}{Dateientschl\374sselung}{}% 11
+\BOOKMARK [2][-]{subsection.4.1}{Obfuskation}{section.4}% 12
+\BOOKMARK [1][-]{section.5}{Fazit und Ausblick}{}% 13
+\BOOKMARK [1][-]{section.6}{Quellen}{}% 14
