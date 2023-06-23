@@ -45,14 +45,14 @@
 \newpage
 
 \begin{abstract}
-\noindent In dem Modul 'Advanced Reverse Engineering' ist es Aufgabe eine Randsomware mithilfe der Salsa20 Cipher zu entwickeln. Dabei soll eine Client-Server Infrastruktur bereitsgestellt werden, mit derer die Schadware gesteuert werden kann. Die Software wird in Python entwickelt und für Linux-Systeme ausführbar gemacht.
+\noindent In dem Modul 'Advanced Reverse Engineering' ist es Aufgabe eine Ransomware mithilfe der Salsa20 Cipher zu entwickeln. Dabei soll eine Client-Server Infrastruktur bereitsgestellt werden, mit derer die Schadware gesteuert werden kann. Die Software wird in Python entwickelt und für Linux-Systeme ausführbar gemacht.
 \end{abstract}
 \section{Einführung}
 Ransomware, oder auch Verschlüsselungstrojaner genannt, ist eine Malware, die das Ziel hat, den Zugriff auf bestimmte Dateien oder das gesamte Computersystem  zu verschlüsseln und anschließend Lösegeld von den Opfern zu erpressen. Dafür wird ein System mit der Schadware infiziert und anschließend anhand von starken kryptografischen Algorithmen verschlüsselt. Dadurch werden Dateien und Programme unbrauchbar gemacht. Möchte das Opfer sein System wieder entschlüsselt benötigt es den kryptografischen Schlüssel des Angreifers. Dieser wird nur gegen eine Lösegeldzahlung, meist in Form von Kryptowährungen wie Bitcoin bereitsgestellt. 
 \newline
 
 
-Ziel dieses Projektes ist zum einen die Implementierung der notwendigen Infrastruktur, in Form eines Client-Server Models, sowie die Erstellung der Randsomware anhand der Programmiersprache Python.
+Ziel dieses Projektes ist zum einen die Implementierung der notwendigen Infrastruktur, in Form eines Client-Server Models, sowie die Erstellung der Ransomware anhand der Programmiersprache Python.
 Für die eigentlich Schadaktion der Dateiverschlüsselung wird die ChaCha20 Cipher verwendet. Diese ist eine Modifikation bzw. Optimierung von Salsa20.
 Zudem sollen Maßnahmen implementiert werden, die dass Analysieren der Schadware erschweren. Dafür werden Methoden der Code Obfuskation verwendet.\\
 Dieses Dokument beleuchtet die Umsetzung und Implementierung der einzelnen Schritte.
@@ -60,7 +60,7 @@ Dieses Dokument beleuchtet die Umsetzung und Implementierung der einzelnen Schri
 \newpage
 \section{Infrastruktur}
 \subsection{Victim-Server}
-	Auf dem Opfer-Server soll der eigentliche Randsomware Angriff stattfinden. Um diesen bereitzustellen könnten Virtuelle Maschienen verwendet werden. Diese sind jedoch sehr schwergewichtig und umständlich einzurichten.
+	Auf dem Opfer-Server soll der eigentliche Ransomware-Angriff stattfinden. Um diesen bereitzustellen könnten Virtuelle Maschienen verwendet werden. Diese sind jedoch sehr schwergewichtig und umständlich einzurichten.
 	Daher wurde sich für eine Implementierung in einem Docker Container entschieden.
 	Container sind eine leichtgewichtige Art von Virtualisierung auf Betriebssystemebene[1]. Dies kann genutzt werden um eine Anwendung mitsamt ihren Abhängigkeiten als eine abgeschlossene Einheit zu verpacken und zu betreiben. Dies bietet Vorteile wie Plattformunabhängigkeit und einfache Ausfürbarkeit. In diesem Fall wird ein Ubuntu Container mit einiger vorinstallierter Software wie SSH und Python aufgesetzt.\\
 	Das Packet aus Anwendung und Abhängigkeiten
@@ -102,7 +102,7 @@ Auf dem Filesystem des Victim Servers sind die im Dockerfile deklarierten Testfi
 \end{center}
 \newpage
 \subsection{Command and Control Server}
-Auf dem Command\&Control-Server soll der Randsomwareangriff gesteuert werden. Dies wird anhand von SSH bewerkstelligt. Des weiteren ist der Schlüssel für die Randsomware auf dem C\&C-server zu erzeugen. Dafür benötigt dieser die nahezu identische Konfiguration wie der Victim-Server.
+Auf dem Command\&Control-Server soll der Ransomwareangriff gesteuert werden. Dies wird anhand von SSH bewerkstelligt. Des weiteren ist der Schlüssel für die Randsomware auf dem C\&C-server zu erzeugen. Dafür benötigt dieser die nahezu identische Konfiguration wie der Victim-Server.
 \begin{figure}[h]
 \caption{Dockerfile des C\&C-Server}
 \begin{lstlisting}[language=python, style=code]
@@ -131,11 +131,11 @@ Der C\&C-Server installiert die gleichen Abhängikeiten und Services wie der Vic
 \end{center}
 Das Netzwerkinterface des C\&C-Servers.
 \newpage
-\section{Randsomware}
+\section{Ransomware}
 
-Da laut Aufgabenstellung nicht anders beschrieben, wird davon ausgegangen das die Randsomware bereits auf dem Opfer-Server vorhanden ist. In Realität müsste über ein vorrigen Angriff wie Phishing, oder Brute-Forcing ein Weg gefunden werden, die Schwadware auf den Opfer Rechner zu laden.
+Da laut Aufgabenstellung nicht anders beschrieben, wird davon ausgegangen das die Ransomware bereits auf dem Opfer-Server vorhanden ist. In Realität müsste über ein vorrigen Angriff wie Phishing, oder Brute-Forcing ein Weg gefunden werden, die Schwadware auf den Opfer Rechner zu laden.
 \subsection{Auslesen von Kenndaten}
-Im ersten Schritt, soll die Schadware Kenndaten des Opfers auslesen und diese an den C\&C-Server übermitteln. Dies wird mit der Funktion 'find\_editable\_files' realisiert.
+Im ersten Schritt, soll die Schadware Kenndaten des Opfers auslesen und diese an den C\&C-Server übermitteln. Dies wird mit der Funktion 'find\_editable\_files' realisiert. Für Dokumentationszwecke wird auf eine Codierung verzichtet, ist aber im Code enthalten.
 
 \begin{figure}[h]
 \caption{Python-Funktion zum auslesen der Kenndaten}
@@ -220,7 +220,7 @@ Konkret ist ChaCha20 ein symmetrischer Stromchiffre-Algorithmus, der in erster L
 
 Der ChaCha20-Algorithmus basiert auf dem Add-Rotate-XOR Prinzip und verwendet einen 256-Bit-Schlüssel, einen 64-Bit-Initialisierungsvektor und einen Zählerwert, um einen Stromschlüssel zu erzeugen. Dieser Stromschlüssel wird dann zur Verschlüsselung der Daten verwendet.[5]
 
-ChaCha20 bietet eine hohe Sicherheit gegen verschiedene Angriffsmethoden wie Brute-Force-Angriffe und bekannte Chiffretextangriffe. Zudem weist er gute Eigenschaften in Bezug auf die Verwundbarkeit gegenüber Kryptoanalyse auf, was ihn zu einer guten Wahl für eine Randsomware Malware macht.
+ChaCha20 bietet eine hohe Sicherheit gegen verschiedene Angriffsmethoden wie Brute-Force-Angriffe und bekannte Chiffretextangriffe. Zudem weist er gute Eigenschaften in Bezug auf die Verwundbarkeit gegenüber Kryptoanalyse auf, was ihn zu einer guten Wahl für eine Ransomware Malware macht.
 
 Ein weiterer Vorteil von ChaCha20 ist seine Geschwindigkeit und Effizienz. Der Algorithmus ist so konzipiert, dass er auf modernen Hardwareplattformen, einschließlich Prozessoren und Mobilgeräten, schnell und effizient ausgeführt werden kann. Dies ist besonders wichtig in Umgebungen, in denen Echtzeitverarbeitung und geringe Latenzzeiten erforderlich sind.
 
@@ -229,7 +229,7 @@ ChaCha20 wird oft in Kombination mit dem Poly1305-Authentifizierungsverfahren ve
 Insgesamt ist ChaCha20 ein zuverlässiger und effizienter Stromchiffre-Algorithmus, der in verschiedenen Anwendungen eingesetzt wird, einschließlich der Verschlüsselung von Netzwerkdaten, der sicheren Kommunikation und der Datenspeicherung.
 \newpage
 \begin{figure}[]
-\caption{Python-Funktion }
+\caption{Python Verschlüsselungsfunktion }
 \begin{lstlisting}[language=python, style=code]
 def encrypt_file_chacha20(key, input_file, output_file):
 	# Generiere einen zufaelligen Nonce
